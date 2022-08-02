@@ -1,17 +1,10 @@
 package abstractions;
 
-import global.GlobalSettings;
+import config.GlobalConstants;
 
-public interface Chart extends GlobalSettings {
+import java.util.List;
 
-    Chart addElement(Element element);
+public interface Chart  {
 
-    Chart setWidth(double width);
-
-    Chart setHeight(double height);
-
-    Chart addElements(Element[] elements);
-
-    Chart build();
 
 }
