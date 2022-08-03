@@ -11,13 +11,32 @@ public abstract class AbstractDataset<V> implements Element {
     protected List<V> values = new ArrayList<>();
     protected Group constructedElement;
 
-    public AbstractDataset(){}
+    public AbstractDataset() {
+    }
 
-    public AbstractDataset(List<V> values){
+    public AbstractDataset(List<V> values) {
         addAllValues(values);
     }
 
     public abstract Group construct();
+
+    public abstract double findMin();
+
+    public abstract double findMax();
+
+    protected double normalize(double v, double min, double max) {
+
+        try {
+            return (v - min) / (max - min);
+        } catch (ArithmeticException e) {
+            return 0d;
+        }
+
+    }
+
+    public List<V> getValues(){
+        return this.values;
+    }
 
     public Group getConstructedElement() {
         return this.constructedElement;
