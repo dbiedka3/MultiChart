@@ -23,6 +23,13 @@ public interface GlobalConstants {
     public static final double TOP_PADDING=20d;
     public static final double BOTTOM_PADDING=20d;
 
+    /**
+     * Defines chart window minimum size in pixels
+     */
+    public static final double MIN_CHART_WIDTH=600d;
+    public static final double MIN_CHART_HEIGTH=300d;
+
+
 
 
 }
