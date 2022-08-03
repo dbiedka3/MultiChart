@@ -4,10 +4,8 @@ import elements.dataset.candlestick.Candlestick;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.Callable;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class CandlestickDatasetTest {
 
@@ -26,5 +24,45 @@ class CandlestickDatasetTest {
         list.add(c2);
         CandlestickDataset cd2=new CandlestickDataset(list);
 
+    }
+
+    @Test
+    void findCandlestickMinTest() {
+
+    //given
+        ArrayList<Candlestick> candles=new ArrayList<>();
+        candles.add(new Candlestick("c",1,4,0.5,2));
+        candles.add(new Candlestick("c",1,3,0.8,2));
+        candles.add(new Candlestick("c",1,7,2.5,2));
+        candles.add(new Candlestick("c",1,12,5.5,2));
+        candles.add(new Candlestick("c",1,5,-0.5,2));
+        candles.add(new Candlestick("c",1,5,0.5,2));
+     //when
+     CandlestickDataset cds=new CandlestickDataset();
+     cds.addAllValues(candles);
+
+     //then
+        assertEquals(-0.5,cds.findMin());
+
+
+    }
+
+    @Test
+    void findCandlestickMaxTest() {
+
+        //given
+        ArrayList<Candlestick> candles=new ArrayList<>();
+        candles.add(new Candlestick("c",1,4,0.5,2));
+        candles.add(new Candlestick("c",1,3,0.5,2));
+        candles.add(new Candlestick("c",1,7,0.5,2));
+        candles.add(new Candlestick("c",1,12,0.5,2));
+        candles.add(new Candlestick("c",1,-1,0.5,2));
+        candles.add(new Candlestick("c",1,5,0.5,2));
+        //when
+        CandlestickDataset cds=new CandlestickDataset();
+        cds.addAllValues(candles);
+
+        //then
+        assertEquals(12,cds.findMax());
     }
 }
