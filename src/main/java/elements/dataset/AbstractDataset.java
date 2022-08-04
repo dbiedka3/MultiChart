@@ -8,6 +8,7 @@ import java.util.List;
 
 public abstract class AbstractDataset<V> implements Element {
 
+
     protected List<V> values = new ArrayList<>();
     protected Group constructedElement;
 
@@ -34,7 +35,7 @@ public abstract class AbstractDataset<V> implements Element {
 
     }
 
-    public List<V> getValues(){
+    public List<V> getValues() {
         return this.values;
     }
 

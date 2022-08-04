@@ -13,7 +13,7 @@ public class BootWindowTest extends Application {
     public void start(Stage stage) throws Exception {
 
         AnchorPane root=new AnchorPane();
-        Scene scene = new Scene(root,1200,600);
+        Scene scene = new Scene(root,600,300);
         stage.setScene(scene);
         stage.show();
 

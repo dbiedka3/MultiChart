@@ -5,7 +5,7 @@ import javafx.scene.Group;
 
 import java.util.List;
 
-public class CandlestickDataset extends AbstractDataset<Candlestick> {
+public class CandlestickDataset extends AbstractDataset<Candlestick>{
 
     public CandlestickDataset() {
     }
