@@ -2,6 +2,7 @@ package chart;
 
 import abstractions.Chart;
 import abstractions.Element;
+import config.UnitChartConfig;
 import javafx.scene.Group;
 
 import java.util.List;
@@ -48,12 +49,25 @@ public class UnitChartBuilder extends AbstractChartBuilder {
 
     private void buildUnitChart() {
 
+        initializeUnitChartConfig();
+
         Group group = new Group();
         for (Element e : this.elements) {
+
+            e.construct(config);
             group.getChildren().add(e.getConstructedElement());
 
         }
         this.chart=new UnitChart(group);
+
+    }
+
+    private void initializeUnitChartConfig(){
+
+        this.config=new UnitChartConfig();
+        config.setNewChartWidth(this.width);
+        config.setNewChartHeight(this.height);
+
 
     }
 }

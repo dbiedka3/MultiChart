@@ -7,14 +7,14 @@ import lombok.Setter;
 @Setter
 public class UnitChartConfig implements GlobalConstants {
 
-    private static double CHART_CELL_WIDTH;
-    private static double CANDLESTICK_WIDTH;
-    private static double LEFT_PADDING;
-    private static double RIGHT_PADDING;
-    private static double TOP_PADDING;
-    private static double BOTTOM_PADDING;
-    public static double CHART_WIDTH;
-    public static double CHART_HEIGHT;
+    private double CHART_CELL_WIDTH;
+    private double CANDLESTICK_WIDTH;
+    private double LEFT_PADDING;
+    private double RIGHT_PADDING;
+    private double TOP_PADDING;
+    private double BOTTOM_PADDING;
+    public double CHART_WIDTH;
+    public double CHART_HEIGHT;
 
     public UnitChartConfig() {
         init();
@@ -32,6 +32,14 @@ public class UnitChartConfig implements GlobalConstants {
         this.CHART_HEIGHT = MIN_CHART_HEIGHT;
 
 
+    }
+
+    public void setNewChartWidth(double newWidth){
+        if(newWidth>MIN_CHART_WIDTH) setCHART_WIDTH(newWidth);
+
+    }
+    public void setNewChartHeight(double newHeight){
+        if(newHeight>MIN_CHART_HEIGHT) setCHART_HEIGHT(newHeight);
     }
 
 

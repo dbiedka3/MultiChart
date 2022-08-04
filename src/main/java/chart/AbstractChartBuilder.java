@@ -2,6 +2,7 @@ package chart;
 
 import abstractions.Chart;
 import abstractions.Element;
+import config.UnitChartConfig;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,6 +10,7 @@ import java.util.List;
 public abstract class AbstractChartBuilder implements Chart {
 
 
+    protected UnitChartConfig config;
     protected Chart chart;
     protected List<Element> elements = new ArrayList<>();
     protected double width;
