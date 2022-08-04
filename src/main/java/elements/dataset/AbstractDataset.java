@@ -1,6 +1,7 @@
 package elements.dataset;
 
 import abstractions.Element;
+import config.UnitChartConfig;
 import javafx.scene.Group;
 
 import java.util.ArrayList;
@@ -11,15 +12,19 @@ public abstract class AbstractDataset<V> implements Element {
 
     protected List<V> values = new ArrayList<>();
     protected Group constructedElement;
+    protected double minValue;
+    protected double maxValue;
 
     public AbstractDataset() {
+
     }
 
     public AbstractDataset(List<V> values) {
         addAllValues(values);
+        updateMinAndMax();
     }
 
-    public abstract Group construct();
+    public abstract Group construct(UnitChartConfig config);
 
     public abstract double findMin();
 
@@ -39,24 +44,32 @@ public abstract class AbstractDataset<V> implements Element {
         return this.values;
     }
 
+    public double getMinValue() {
+        return this.minValue;
+    }
+
+    public double getMaxValue() {
+        return this.maxValue;
+    }
+
     public Group getConstructedElement() {
         return this.constructedElement;
     }
 
     public void addValue(V value) {
         this.values.add(value);
+        updateMinAndMax();
     }
 
     public void addAllValues(List<V> values) {
         this.values.addAll(values);
+        updateMinAndMax();
     }
 
-    public void removeValueById(int index) {
-        this.values.remove(index);
-    }
 
-    public void removeAll() {
-        this.values.clear();
+    public void updateMinAndMax() {
+        this.minValue = findMin();
+        this.maxValue = findMax();
     }
 
 

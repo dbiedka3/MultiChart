@@ -30,6 +30,12 @@ class LineDatasetTest {
 
         //then
         assertEquals(6.7,lds.findMax());
+        assertEquals(lds.getMaxValue(),lds.findMax());
+
+        lds.addValue(new LineData("2",12));
+
+        assertEquals(12,lds.findMax());
+        assertEquals(lds.getMaxValue(),lds.findMax());
 
     }
 
@@ -52,6 +58,12 @@ class LineDatasetTest {
 
         //then
         assertEquals(-2,lds.findMin());
+        assertEquals(lds.getMinValue(),lds.findMin());
+
+        lds.addValue(new LineData("2",-12));
+
+        assertEquals(-12,lds.findMin());
+        assertEquals(lds.getMinValue(),lds.findMin());
 
     }
 }
