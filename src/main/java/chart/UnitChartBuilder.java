@@ -2,7 +2,6 @@ package chart;
 
 import abstractions.Chart;
 import abstractions.Element;
-import config.UnitChartConfig;
 import javafx.scene.Group;
 
 import java.util.List;
@@ -46,6 +45,15 @@ public class UnitChartBuilder extends AbstractChartBuilder {
         return this.chart;
     }
 
+    /**
+     * Validates if minimum requirements are met
+     * to construct unit chart*/
+
+    @Override
+    boolean validate() {
+        return false;
+    }
+
 
     private void buildUnitChart() {
 
@@ -55,6 +63,7 @@ public class UnitChartBuilder extends AbstractChartBuilder {
         for (Element e : this.elements) {
 
             e.construct(config);
+
             group.getChildren().add(e.getConstructedElement());
 
         }

@@ -1,12 +1,11 @@
 package elements.dataset;
 
 
-import elements.dataset.candlestick.Candlestick;
+import chart.UnitChartConfig;
 import elements.dataset.linedata.LineData;
 import javafx.scene.Group;
 
 import java.util.List;
-import java.util.Optional;
 
 public class LineDataset extends AbstractDataset<LineData> {
 
@@ -18,7 +17,7 @@ public class LineDataset extends AbstractDataset<LineData> {
     }
 
     @Override
-    public Group construct() {
+    public Group construct(UnitChartConfig config) {
         return null;
     }
 
@@ -44,16 +43,6 @@ public class LineDataset extends AbstractDataset<LineData> {
         return max;
     }
 
-//    public double findMaxStream() {
-//
-//        Optional<LineData> max = this.getValues().stream().max((o1, o2) -> {
-//
-//                    if (o1.getValue() > o2.getValue()) return 1;
-//                    else if (o1.getValue() < o2.getValue()) return -1;
-//                    else return 0;
-//                }
-//        );
-//        return max.get().getValue();
-//    }
+
 }
 

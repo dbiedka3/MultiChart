@@ -1,7 +1,7 @@
 package elements.dataset;
 
 import abstractions.Element;
-import config.UnitChartConfig;
+import chart.UnitChartConfig;
 import javafx.scene.Group;
 
 import java.util.ArrayList;

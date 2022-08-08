@@ -1,5 +1,6 @@
-package config;
+package chart;
 
+import config.GlobalConstants;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -34,13 +35,24 @@ public class UnitChartConfig implements GlobalConstants {
 
     }
 
-    public void setNewChartWidth(double newWidth){
-        if(newWidth>MIN_CHART_WIDTH) setCHART_WIDTH(newWidth);
+    public void setNewChartWidth(double newWidth) {
+        if (newWidth > MIN_CHART_WIDTH) {
+            setCHART_WIDTH(newWidth);
+            completeToDividableByMinCellWith();
+        }
 
     }
-    public void setNewChartHeight(double newHeight){
-        if(newHeight>MIN_CHART_HEIGHT) setCHART_HEIGHT(newHeight);
+
+    public void setNewChartHeight(double newHeight) {
+        if (newHeight > MIN_CHART_HEIGHT) setCHART_HEIGHT(newHeight);
     }
 
+    private void completeToDividableByMinCellWith() {
+
+        int remainder = (int) (this.CHART_WIDTH % MIN_CHART_CELL_WIDTH);
+        double complement = MIN_CHART_CELL_WIDTH - (double) remainder;
+        setCHART_WIDTH(this.getCHART_WIDTH() + complement);
+
+    }
 
 }

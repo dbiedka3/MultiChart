@@ -1,6 +1,6 @@
 package abstractions;
 
-import config.UnitChartConfig;
+import chart.UnitChartConfig;
 import javafx.scene.Group;
 
 public interface Element {
