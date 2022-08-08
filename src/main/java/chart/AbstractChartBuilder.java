@@ -2,7 +2,6 @@ package chart;
 
 import abstractions.Chart;
 import abstractions.Element;
-import config.UnitChartConfig;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +25,8 @@ public abstract class AbstractChartBuilder implements Chart {
     abstract Chart addElements(List<Element> elements);
 
     abstract Chart build();
+
+    abstract boolean validate();
 
 
 }

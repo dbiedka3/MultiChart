@@ -1,5 +1,6 @@
 package elements.dataset;
 
+import chart.UnitChartConfig;
 import elements.dataset.candlestick.Candlestick;
 import javafx.scene.Group;
 
@@ -15,9 +16,11 @@ public class CandlestickDataset extends AbstractDataset<Candlestick>{
     }
 
     @Override
-    public Group construct() {
+    public Group construct(UnitChartConfig config) {
         return null;
     }
+
+
 
     @Override
     public double findMin() {
