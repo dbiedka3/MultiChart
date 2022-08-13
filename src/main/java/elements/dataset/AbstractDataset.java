@@ -3,10 +3,12 @@ package elements.dataset;
 import abstractions.Element;
 import chart.UnitChartConfig;
 import javafx.scene.Group;
+import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Getter
 public abstract class AbstractDataset<V> implements Element {
 
 

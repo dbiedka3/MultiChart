@@ -2,10 +2,12 @@ package chart;
 
 import abstractions.Chart;
 import abstractions.Element;
+import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Getter
 public abstract class AbstractChartBuilder implements Chart {
 
 
@@ -14,6 +16,7 @@ public abstract class AbstractChartBuilder implements Chart {
     protected List<Element> elements = new ArrayList<>();
     protected double width;
     protected double height;
+    protected int longestDatasetSize;
 
 
     abstract Chart addElement(Element element);
@@ -27,6 +30,8 @@ public abstract class AbstractChartBuilder implements Chart {
     abstract Chart build();
 
     abstract boolean validate();
+
+    abstract void scanElements();
 
 
 }

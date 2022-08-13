@@ -2,10 +2,13 @@ package chart;
 
 import abstractions.Chart;
 import abstractions.Element;
+import elements.dataset.AbstractDataset;
 import javafx.scene.Group;
+import lombok.Getter;
 
 import java.util.List;
 
+@Getter
 public class UnitChartBuilder extends AbstractChartBuilder {
 
 
@@ -17,6 +20,7 @@ public class UnitChartBuilder extends AbstractChartBuilder {
     @Override
     public Chart addElement(Element element) {
         this.elements.add(element);
+        scanElements();
         return this;
     }
 
@@ -35,6 +39,7 @@ public class UnitChartBuilder extends AbstractChartBuilder {
     @Override
     public Chart addElements(List<Element> elements) {
         this.elements.addAll(elements);
+        scanElements();
         return this;
     }
 
@@ -47,11 +52,30 @@ public class UnitChartBuilder extends AbstractChartBuilder {
 
     /**
      * Validates if minimum requirements are met
-     * to construct unit chart*/
+     * to construct unit chart
+     */
 
     @Override
     boolean validate() {
         return false;
+    }
+
+    /**
+     * Scans Element list and finds
+     * maximum size of Dataset-type element
+     * to be later used in chart balancing
+     * process
+     */
+
+    @Override
+    void scanElements() {
+        this.elements.forEach(e -> {
+            if (e instanceof AbstractDataset) {
+                if (this.longestDatasetSize < ((AbstractDataset<?>) e).getValues().size())
+                    this.longestDatasetSize = ((AbstractDataset<?>) e).getValues().size();
+            }
+
+        });
     }
 
 
@@ -67,13 +91,13 @@ public class UnitChartBuilder extends AbstractChartBuilder {
             group.getChildren().add(e.getConstructedElement());
 
         }
-        this.chart=new UnitChart(group);
+        this.chart = new UnitChart(group);
 
     }
 
-    private void initializeUnitChartConfig(){
+    private void initializeUnitChartConfig() {
 
-        this.config=new UnitChartConfig();
+        this.config = new UnitChartConfig();
         config.setNewChartWidth(this.width);
         config.setNewChartHeight(this.height);
 
