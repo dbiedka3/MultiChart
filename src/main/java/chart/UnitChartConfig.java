@@ -10,6 +10,7 @@ public class UnitChartConfig implements GlobalConstants {
 
     private double CHART_CELL_WIDTH;
     private double CANDLESTICK_WIDTH;
+    private double INTERLINE_WIDTH;
     private double LEFT_PADDING;
     private double RIGHT_PADDING;
     private double TOP_PADDING;
@@ -25,6 +26,7 @@ public class UnitChartConfig implements GlobalConstants {
     private void init() {
         this.CHART_CELL_WIDTH = MIN_CHART_CELL_WIDTH;
         this.CANDLESTICK_WIDTH = MIN_CANDLESTICK_WIDTH;
+        this.INTERLINE_WIDTH=MIN_INTERLINE_WIDTH;
         this.LEFT_PADDING = MIN_LEFT_PADDING;
         this.RIGHT_PADDING = MIN_RIGHT_PADDING;
         this.TOP_PADDING = MIN_TOP_PADDING;

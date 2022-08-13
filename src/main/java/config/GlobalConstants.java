@@ -16,6 +16,12 @@ public interface GlobalConstants {
     public static final double MIN_CANDLESTICK_WIDTH = 3d;
 
     /**
+     * Defines interline width in pixels
+     */
+    public static final double MIN_INTERLINE_WIDTH=0d;
+
+
+    /**
      * Defines chart area padding in pixels
      */
     public static final double MIN_LEFT_PADDING=20d;
