@@ -26,7 +26,7 @@ public abstract class AbstractDataset<V> implements Element {
         updateMinAndMax();
     }
 
-    public abstract Group construct(UnitChartConfig config);
+    public abstract void construct(UnitChartConfig config);
 
     public abstract double findMin();
 

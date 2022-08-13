@@ -68,7 +68,7 @@ public class UnitChartBuilder extends AbstractChartBuilder {
      */
 
     @Override
-    void scanElements() {
+    public void scanElements() {
         this.elements.forEach(e -> {
             if (e instanceof AbstractDataset) {
                 if (this.longestDatasetSize < ((AbstractDataset<?>) e).getValues().size())
@@ -100,7 +100,35 @@ public class UnitChartBuilder extends AbstractChartBuilder {
         this.config = new UnitChartConfig();
         config.setNewChartWidth(this.width);
         config.setNewChartHeight(this.height);
+        balanceChart();
 
 
     }
+
+    private void balanceChart() {
+
+        double plottingAreaWidth = this.config.getCHART_WIDTH() - this.config.getLEFT_PADDING() - this.config.getRIGHT_PADDING();
+
+        double tempCellWidth = this.config.getCHART_CELL_WIDTH();
+        double tempCandlestickWidth = this.config.getCANDLESTICK_WIDTH();
+
+        while (this.longestDatasetSize * (tempCellWidth + 2d) < plottingAreaWidth) {
+            tempCellWidth += 2d;
+            tempCandlestickWidth += 2d;
+        }
+
+        double tempInterlineWidth = this.config.getINTERLINE_WIDTH();
+
+        while (this.longestDatasetSize * tempCellWidth + this.longestDatasetSize * (tempCandlestickWidth + 1d) < plottingAreaWidth) {
+            tempInterlineWidth++;
+
+        }
+
+        /*Set config with new for cell, candlestick and interline values*/
+        this.config.setCHART_CELL_WIDTH(tempCellWidth);
+        this.config.setCANDLESTICK_WIDTH(tempCandlestickWidth);
+        this.config.setINTERLINE_WIDTH(tempInterlineWidth);
+    }
+
+
 }

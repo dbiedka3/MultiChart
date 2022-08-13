@@ -1,5 +1,6 @@
 package chart;
 
+import abstractions.Chart;
 import elements.dataset.CandlestickDataset;
 import elements.dataset.LineDataset;
 import elements.dataset.candlestick.Candlestick;
@@ -16,30 +17,9 @@ class UnitChartBuilderTest {
     void testIfScanElementsGivesExpectedMaxCollectionSizeValues() {
         //given
 
-        CandlestickDataset cds = new CandlestickDataset();
+        CandlestickDataset cds = getCandlestickDataset();
 
-        ArrayList<Candlestick> candles = new ArrayList<>();
-        candles.add(new Candlestick("c", 1, 4, 0.5, 2));
-        candles.add(new Candlestick("c", 1, 3, 0.8, 2));
-        candles.add(new Candlestick("c", 1, 7, 2.5, 2));
-        candles.add(new Candlestick("c", 1, 12, 5.5, 2));
-        candles.add(new Candlestick("c", 1, 5, -0.5, 2));
-        candles.add(new Candlestick("c", 1, 5, 0.5, 2));
-
-        cds.addAllValues(candles);
-
-        LineDataset lds = new LineDataset();
-
-        ArrayList<LineData> ld = new ArrayList<>();
-        ld.add(new LineData("1", 1));
-        ld.add(new LineData("1", 2));
-        ld.add(new LineData("1", 3));
-        ld.add(new LineData("1", 4));
-        ld.add(new LineData("1", 6));
-        ld.add(new LineData("1", 6.3));
-        ld.add(new LineData("1", 6.7));
-
-        lds.addAllValues(ld);
+        LineDataset lds = getLineDataset();
 
         //when
         UnitChartBuilder ucb = new UnitChartBuilder();
@@ -54,4 +34,58 @@ class UnitChartBuilderTest {
 
 
     }
+
+    @Test
+    void testIfBalancingIsCorrectlyPerformedWhenElementSizeSmallerThanMax() {
+
+        //given
+        LineDataset lds = getLineDataset();
+        UnitChartBuilder ucb = new UnitChartBuilder();
+        ucb.addElement(lds);
+
+
+
+        //when
+        ucb.build();
+
+        //then
+
+        assertEquals(79,ucb.getConfig().getCHART_CELL_WIDTH());
+        assertEquals(77,ucb.getConfig().getCANDLESTICK_WIDTH());
+        assertEquals(0,ucb.getConfig().getINTERLINE_WIDTH());
+
+    }
+
+    private LineDataset getLineDataset() {
+        LineDataset lds = new LineDataset();
+
+        ArrayList<LineData> ld = new ArrayList<>();
+        ld.add(new LineData("1", 1));
+        ld.add(new LineData("1", 2));
+        ld.add(new LineData("1", 3));
+        ld.add(new LineData("1", 4));
+        ld.add(new LineData("1", 6));
+        ld.add(new LineData("1", 6.3));
+        ld.add(new LineData("1", 6.7));
+
+        lds.addAllValues(ld);
+        return lds;
+    }
+
+    private CandlestickDataset getCandlestickDataset() {
+        CandlestickDataset cds = new CandlestickDataset();
+
+        ArrayList<Candlestick> candles = new ArrayList<>();
+        candles.add(new Candlestick("c", 1, 4, 0.5, 2));
+        candles.add(new Candlestick("c", 1, 3, 0.8, 2));
+        candles.add(new Candlestick("c", 1, 7, 2.5, 2));
+        candles.add(new Candlestick("c", 1, 12, 5.5, 2));
+        candles.add(new Candlestick("c", 1, 5, -0.5, 2));
+        candles.add(new Candlestick("c", 1, 5, 0.5, 2));
+
+        cds.addAllValues(candles);
+        return cds;
+    }
+
+
 }

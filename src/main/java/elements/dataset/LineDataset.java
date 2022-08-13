@@ -17,8 +17,8 @@ public class LineDataset extends AbstractDataset<LineData> {
     }
 
     @Override
-    public Group construct(UnitChartConfig config) {
-        return null;
+    public void construct(UnitChartConfig config) {
+        this.constructedElement= new Group();
     }
 
     @Override

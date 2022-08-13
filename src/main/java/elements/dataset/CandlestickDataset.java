@@ -6,7 +6,7 @@ import javafx.scene.Group;
 
 import java.util.List;
 
-public class CandlestickDataset extends AbstractDataset<Candlestick>{
+public class CandlestickDataset extends AbstractDataset<Candlestick> {
 
     public CandlestickDataset() {
     }
@@ -16,10 +16,9 @@ public class CandlestickDataset extends AbstractDataset<Candlestick>{
     }
 
     @Override
-    public Group construct(UnitChartConfig config) {
-        return null;
+    public void construct(UnitChartConfig config) {
+        this.constructedElement = new Group();
     }
-
 
 
     @Override
