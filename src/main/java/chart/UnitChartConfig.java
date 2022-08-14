@@ -18,6 +18,10 @@ public class UnitChartConfig implements GlobalConstants {
     public double CHART_WIDTH;
     public double CHART_HEIGHT;
 
+    private double maxDatasetValue;
+    private double minDatasetValue;
+
+
     public UnitChartConfig() {
         init();
     }
@@ -49,6 +53,11 @@ public class UnitChartConfig implements GlobalConstants {
         if (newHeight > MIN_CHART_HEIGHT) setCHART_HEIGHT(newHeight);
     }
 
+
+    /**
+    * Method adjusts chart width in order to be dividible by
+     * MIN_CHART_CELLWIDTH
+    * */
     private void completeToDividableByMinCellWith() {
 
         int remainder = (int) (this.CHART_WIDTH % MIN_CHART_CELL_WIDTH);

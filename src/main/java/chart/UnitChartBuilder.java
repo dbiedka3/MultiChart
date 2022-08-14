@@ -65,6 +65,8 @@ public class UnitChartBuilder extends AbstractChartBuilder {
      * maximum size of Dataset-type element
      * to be later used in chart balancing
      * process
+     * Mehod and updates also max and min global dataset
+     * variables used for y-coordinate calculation.
      */
 
     @Override
@@ -73,6 +75,11 @@ public class UnitChartBuilder extends AbstractChartBuilder {
             if (e instanceof AbstractDataset) {
                 if (this.longestDatasetSize < ((AbstractDataset<?>) e).getValues().size())
                     this.longestDatasetSize = ((AbstractDataset<?>) e).getValues().size();
+
+                if (((AbstractDataset<?>) e).getMaxValue() > this.maxDatasetValue)
+                    this.maxDatasetValue = ((AbstractDataset<?>) e).getMaxValue();
+                if (((AbstractDataset<?>) e).getMinValue() < this.minDatasetValue)
+                    this.minDatasetValue = ((AbstractDataset<?>) e).getMinValue();
             }
 
         });
@@ -85,14 +92,10 @@ public class UnitChartBuilder extends AbstractChartBuilder {
 
         Group group = new Group();
         for (Element e : this.elements) {
-
             e.construct(config);
-
             group.getChildren().add(e.getConstructedElement());
-
         }
         this.chart = new UnitChart(group);
-
     }
 
     private void initializeUnitChartConfig() {
@@ -100,6 +103,8 @@ public class UnitChartBuilder extends AbstractChartBuilder {
         this.config = new UnitChartConfig();
         config.setNewChartWidth(this.width);
         config.setNewChartHeight(this.height);
+        config.setMaxDatasetValue(this.maxDatasetValue);
+        config.setMinDatasetValue(this.minDatasetValue);
         balanceChart();
 
 

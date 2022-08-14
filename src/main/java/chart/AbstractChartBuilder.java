@@ -17,6 +17,8 @@ public abstract class AbstractChartBuilder implements Chart {
     protected double width;
     protected double height;
     protected int longestDatasetSize;
+    protected double maxDatasetValue=Double.MIN_VALUE;
+    protected double minDatasetValue=Double.MAX_VALUE;
 
 
     abstract Chart addElement(Element element);
